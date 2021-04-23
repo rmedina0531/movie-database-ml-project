@@ -8,3 +8,5 @@ download the data from above and add it to the new data folder\
 data has been edited from the standard movie dataset
 
 
+## Project
+project file is main.ipynb, not project.ipynb
