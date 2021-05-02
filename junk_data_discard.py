@@ -48,8 +48,7 @@ def readFile(f):
         column=dict(zip(header, values))
         # print(column)
 
-        df = pd.DataFrame(columns=header)
-
+        rows = []
         # print(type(csv_reader))
         if header != None:
             prev = None
@@ -61,7 +60,10 @@ def readFile(f):
                     prev = row
                     continue
                 row = integer_check(i, row, row[column['revenue']], prev)
-                df.append(pd.DataFrame(row, columns=header))
+                try:
+                    rows.append(dict(zip(header, row)))
+                except:
+                    print(i, "error")
                 prev = row
                 # try:
                 #     if '.jpg' in row[column['production_companies']]:
@@ -78,9 +80,9 @@ def readFile(f):
                 # #     y = int(row[column["revenue"]])
                 # # except:
                 # #     print(row[column['title']])
-        return df
+        return pd.DataFrame(rows)
 
 if __name__ == "__main__":
-    readFile('./data/movies_metadata.csv')
-
+    df = readFile('./data/movies_metadata.csv')
+    print(df.head)
     
